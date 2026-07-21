@@ -30,15 +30,19 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
 function createSupabaseClient() {
   // Use import.meta.env for client-side (Vite build-time replacement)
   // Fall back to process.env for SSR (server-side rendering)
+  // Also try SUPABASE_ANON_KEY which is the standard Vercel Supabase integration variable name
   const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+  const SUPABASE_PUBLISHABLE_KEY =
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_ANON_KEY;
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [
       ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-      ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+      ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY / SUPABASE_ANON_KEY'] : []),
     ];
-    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Add them in your Vercel project settings.`;
     console.error(`[Supabase] ${message}`);
     throw new Error(message);
   }
@@ -55,13 +59,23 @@ function createSupabaseClient() {
   });
 }
 
-let _supabase: ReturnType<typeof createSupabaseClient> | undefined;
+let _supabase: ReturnType<typeof createSupabaseClient> | null | undefined;
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>, {
   get(_, prop, receiver) {
-    if (!_supabase) _supabase = createSupabaseClient();
+    if (!_supabase) {
+      try {
+        _supabase = createSupabaseClient();
+      } catch (e) {
+        console.error('[Supabase] Client initialization failed:', e);
+        _supabase = null;
+      }
+    }
+    if (!_supabase) {
+      throw new Error('Supabase client is not configured. Add SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY (or SUPABASE_ANON_KEY) to your environment variables.');
+    }
     return Reflect.get(_supabase, prop, receiver);
   },
 });

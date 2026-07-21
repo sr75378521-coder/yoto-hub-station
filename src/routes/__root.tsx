@@ -129,12 +129,17 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-      router.invalidate();
-      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
-    });
-    return () => sub.subscription.unsubscribe();
+    let sub: { subscription: { unsubscribe: () => void } } | undefined;
+    try {
+      sub = supabase.auth.onAuthStateChange((event) => {
+        if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+        router.invalidate();
+        if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+      }) as typeof sub;
+    } catch (e) {
+      console.error('[Supabase] Auth listener setup failed:', e);
+    }
+    return () => sub?.subscription.unsubscribe();
   }, [queryClient, router]);
 
   return (

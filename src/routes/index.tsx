@@ -31,7 +31,7 @@ function Landing() {
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
+    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session)).catch(() => setSignedIn(false));
   }, []);
 
   const cta = () => {
