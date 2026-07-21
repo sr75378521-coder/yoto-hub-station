@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      yoto_connections: {
+        Row: {
+          access_token_ciphertext: string
+          created_at: string
+          expires_at: string
+          id: string
+          refresh_token_ciphertext: string
+          scope: string | null
+          token_type: string | null
+          updated_at: string
+          user_id: string
+          yoto_user_id: string | null
+        }
+        Insert: {
+          access_token_ciphertext: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          refresh_token_ciphertext: string
+          scope?: string | null
+          token_type?: string | null
+          updated_at?: string
+          user_id: string
+          yoto_user_id?: string | null
+        }
+        Update: {
+          access_token_ciphertext?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          refresh_token_ciphertext?: string
+          scope?: string | null
+          token_type?: string | null
+          updated_at?: string
+          user_id?: string
+          yoto_user_id?: string | null
+        }
+        Relationships: []
+      }
+      yoto_oauth_states: {
+        Row: {
+          code_verifier: string
+          created_at: string
+          expires_at: string
+          redirect_to: string | null
+          state: string
+          user_id: string
+        }
+        Insert: {
+          code_verifier: string
+          created_at?: string
+          expires_at?: string
+          redirect_to?: string | null
+          state: string
+          user_id: string
+        }
+        Update: {
+          code_verifier?: string
+          created_at?: string
+          expires_at?: string
+          redirect_to?: string | null
+          state?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
