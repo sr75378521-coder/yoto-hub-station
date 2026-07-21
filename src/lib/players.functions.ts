@@ -90,9 +90,18 @@ export interface FamilyMember {
   role?: string;
 }
 
+export interface FamilyPlaylist {
+  playlistId: string;
+  name: string;
+  artwork?: string;
+  duration?: number;
+  trackCount?: number;
+}
+
 export interface FamilyData {
   connected: boolean;
   members: FamilyMember[];
+  familyPlaylists: FamilyPlaylist[];
   errorMessage?: string;
 }
 
@@ -107,15 +116,26 @@ interface YotoFamilyResponse {
   }>;
 }
 
+interface YotoFamilyPlaylistsResponse {
+  playlists?: Array<{
+    playlistId: string;
+    name?: string;
+    artwork?: string;
+    duration?: number;
+    trackCount?: number;
+  }>;
+}
+
 export const getFamilyData = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<FamilyData> => {
     try {
-      const data = await yotoGetJson<YotoFamilyResponse>(
+      // Fetch family members
+      const familyResponse = await yotoGetJson<YotoFamilyResponse>(
         context.userId,
         "/family/users",
       );
-      const members: FamilyMember[] = (data.users ?? []).map((u) => ({
+      const members: FamilyMember[] = (familyResponse.users ?? []).map((u) => ({
         userId: u.userId,
         firstName: u.firstName ?? "User",
         lastName: u.lastName ?? "",
@@ -123,14 +143,35 @@ export const getFamilyData = createServerFn({ method: "GET" })
         profileImage: u.profileImage ?? "",
         role: u.role ?? "member",
       }));
-      return { connected: true, members };
+
+      // Fetch family playlists (shared playlists)
+      let familyPlaylists: FamilyPlaylist[] = [];
+      try {
+        const playlistResponse = await yotoGetJson<YotoFamilyPlaylistsResponse>(
+          context.userId,
+          "/family/playlists",
+        );
+        familyPlaylists = (playlistResponse.playlists ?? []).map((p) => ({
+          playlistId: p.playlistId,
+          name: p.name ?? "Untitled Playlist",
+          artwork: p.artwork ?? "",
+          duration: p.duration ?? 0,
+          trackCount: p.trackCount ?? 0,
+        }));
+      } catch (e) {
+        // Family playlists endpoint might not exist or be optional
+        familyPlaylists = [];
+      }
+
+      return { connected: true, members, familyPlaylists };
     } catch (e) {
       if (e instanceof YotoNotConnectedError) {
-        return { connected: false, members: [] };
+        return { connected: false, members: [], familyPlaylists: [] };
       }
       return {
         connected: true,
         members: [],
+        familyPlaylists: [],
         errorMessage: e instanceof Error ? e.message : "Unknown error",
       };
     }
