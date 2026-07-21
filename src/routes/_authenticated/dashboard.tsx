@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { getDashboardData, disconnectYoto } from "@/lib/players.functions";
 import { RefreshCw, Unplug } from "lucide-react";
 
-const dashboardQuery = (fn: typeof getDashboardData) =>
+const dashboardQuery = (fn: () => Promise<import("@/lib/players.functions").DashboardData>) =>
   queryOptions({
     queryKey: ["dashboard"],
     queryFn: () => fn(),
