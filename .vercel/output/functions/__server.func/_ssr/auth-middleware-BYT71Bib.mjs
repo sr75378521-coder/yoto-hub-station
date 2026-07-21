@@ -1,7 +1,7 @@
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
 import { u as getRequest } from "./createServerFn-BFFE07zL.mjs";
 import { t as createMiddleware } from "./createMiddleware-B_4t7rW1.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/auth-middleware-BwdutfJC.js
+//#region node_modules/.nitro/vite/services/ssr/assets/auth-middleware-BYT71Bib.js
 function isNewSupabaseApiKey(value) {
 	return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
 }
@@ -18,13 +18,8 @@ function createSupabaseFetch(supabaseKey) {
 	};
 }
 var requireSupabaseAuth = createMiddleware({ type: "function" }).server(async ({ next }) => {
-	const SUPABASE_URL = process.env.SUPABASE_URL;
-	const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
-	if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-		const message = `Missing Supabase environment variable(s): ${[...!SUPABASE_URL ? ["SUPABASE_URL"] : [], ...!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []].join(", ")}. Connect Supabase in Lovable Cloud.`;
-		console.error(`[Supabase] ${message}`);
-		throw new Error(message);
-	}
+	const SUPABASE_URL = process.env.SUPABASE_URL || "https://tiwayrtwnlaguintwkwu.supabase.co";
+	const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpd2F5cnR3bmxhZ3VpbnR3a3d1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2NDg1OTEsImV4cCI6MjEwMDIyNDU5MX0.aVjGMmz7iBbGVExYZ0bJfAdQ8HSX0-4SKFR8V58lBv0";
 	const request = getRequest();
 	if (!request?.headers) throw new Error("Unauthorized: No request headers available");
 	const authHeader = request.headers.get("authorization");

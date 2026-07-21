@@ -10,7 +10,7 @@ import { i as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { a as YOTO_SCOPES, i as YOTO_CALLBACK_PATH, l as upsertConnection, n as YOTO_AUDIENCE, r as YOTO_AUTH_BASE, s as exchangeCodeForTokens } from "./tokens.server-DlBX-lyG.mjs";
 import { n as objectType, r as stringType, t as enumType } from "../_libs/zod.mjs";
 import { createHash, randomBytes } from "node:crypto";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CUvPPgcs.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DYSZL9Cz.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Toaster$1 = ({ ...props }) => {
@@ -259,7 +259,7 @@ var Route$7 = createFileRoute("/auth")({
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
 var $$splitErrorComponentImporter$3 = () => import("./dashboard-CfdBRdD2.mjs");
-var $$splitComponentImporter$4 = () => import("./dashboard-DNfOFIFb.mjs");
+var $$splitComponentImporter$4 = () => import("./dashboard-BD6Svb5K.mjs");
 var searchSchema = objectType({
 	yoto: enumType(["connected"]).optional(),
 	yoto_error: stringType().optional()
@@ -285,7 +285,7 @@ var Route$6 = createFileRoute("/_authenticated/dashboard")({
 	errorComponent: lazyRouteComponent($$splitErrorComponentImporter$3, "errorComponent")
 });
 var $$splitErrorComponentImporter$2 = () => import("./family-CpAul8We.mjs");
-var $$splitComponentImporter$3 = () => import("./family-oghuOs1Z.mjs");
+var $$splitComponentImporter$3 = () => import("./family-yGZkokX4.mjs");
 var Route$5 = createFileRoute("/_authenticated/family")({
 	head: () => ({ meta: [{ title: "Family · Yoto Control Center" }, {
 		name: "description",
@@ -303,7 +303,7 @@ var Route$4 = createFileRoute("/_authenticated/library")({
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
 var $$splitErrorComponentImporter$1 = () => import("./playlists-DCAV5RKo.mjs");
-var $$splitComponentImporter$1 = () => import("./playlists-BGNVUyx9.mjs");
+var $$splitComponentImporter$1 = () => import("./playlists-BqmAmhMx.mjs");
 var Route$3 = createFileRoute("/_authenticated/playlists")({
 	head: () => ({ meta: [{ title: "Playlists · Yoto Control Center" }, {
 		name: "description",
@@ -313,7 +313,7 @@ var Route$3 = createFileRoute("/_authenticated/playlists")({
 	errorComponent: lazyRouteComponent($$splitErrorComponentImporter$1, "errorComponent")
 });
 var $$splitErrorComponentImporter = () => import("./settings-D6bbbHUY.mjs");
-var $$splitComponentImporter = () => import("./settings-DW0VQQPe.mjs");
+var $$splitComponentImporter = () => import("./settings-Bdj-vpNy.mjs");
 var Route$2 = createFileRoute("/_authenticated/settings")({
 	head: () => ({ meta: [{ title: "Settings · Yoto Control Center" }, {
 		name: "description",

@@ -6,13 +6,13 @@ import { n as CardContent, t as Card } from "./card-C2pytTEu.mjs";
 import { v as useSearch } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { f as RefreshCw, n as Wifi, o as Unplug, p as Radio, r as WifiOff } from "../_libs/lucide-react.mjs";
+import { n as getDashboardData, o as useServerFn, t as disconnectYoto } from "./players.functions-BaPLagH1.mjs";
 import { t as Skeleton } from "./skeleton-DLRLwmh_.mjs";
-import { n as getDashboardData, o as useServerFn, t as disconnectYoto } from "./players.functions-D9w5pRnm.mjs";
 import { a as useQueryClient, n as queryOptions, r as useSuspenseQuery, t as useMutation } from "../_libs/tanstack__react-query.mjs";
 import { t as AppShell } from "./AppShell-CEQsK92y.mjs";
 import { t as Badge } from "./badge-Bt-nVIZo.mjs";
 import { t as ConnectYotoCard } from "./ConnectYotoCard-BWkNvAX1.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-DNfOFIFb.js
+//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-BD6Svb5K.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function PlayerCard({ player }) {

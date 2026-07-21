@@ -1,7 +1,7 @@
 import { c as createServerFn, i as TSS_SERVER_FUNCTION } from "./createServerFn-BFFE07zL.mjs";
-import { t as requireSupabaseAuth } from "./auth-middleware-BwdutfJC.mjs";
+import { t as requireSupabaseAuth } from "./auth-middleware-BYT71Bib.mjs";
 import { c as getValidAccessToken, o as deleteConnection, t as YOTO_API_BASE } from "./tokens.server-DlBX-lyG.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/players.functions-ZgtkcbsT.js
+//#region node_modules/.nitro/vite/services/ssr/assets/players.functions-sjAZ7bDE.js
 var createServerRpc = (serverFnMeta, splitImportFn) => {
 	const url = "/_serverFn/" + serverFnMeta.id;
 	return Object.assign(splitImportFn, {

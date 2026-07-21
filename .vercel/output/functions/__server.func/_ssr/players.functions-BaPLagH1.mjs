@@ -2,9 +2,9 @@ import { r as __toESM } from "../_runtime.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { k as isRedirect, y as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { c as createServerFn, i as TSS_SERVER_FUNCTION } from "./createServerFn-BFFE07zL.mjs";
-import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-DHAPVxGx.mjs";
-import { t as requireSupabaseAuth } from "./auth-middleware-BwdutfJC.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/players.functions-D9w5pRnm.js
+import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-kCp3pQJ9.mjs";
+import { t as requireSupabaseAuth } from "./auth-middleware-BYT71Bib.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/players.functions-BaPLagH1.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 function useServerFn(serverFn) {
 	const router = useRouter();
