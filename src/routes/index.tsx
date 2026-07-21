@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
         content:
           "A modern dashboard for every Yoto player, playlist, and MYO card. Real-time controls, family view, and MYO playlist editing.",
       },
-      { property: "og:title", content: "Yoto Control Center" },
+      { property: "og:title", content: "Yoto Control Center — Manage every Yoto player" },
       {
         property: "og:description",
         content:
