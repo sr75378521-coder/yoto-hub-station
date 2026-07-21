@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/dashboard", label: "Players", icon: LayoutDashboard },
-  { to: "/family", label: "Family", icon: Users, disabled: true },
-  { to: "/playlists", label: "Playlists", icon: ListMusic, disabled: true },
-  { to: "/library", label: "Library", icon: Library, disabled: true },
-  { to: "/settings", label: "Settings", icon: Settings, disabled: true },
+  { to: "/family", label: "Family", icon: Users },
+  { to: "/playlists", label: "Playlists", icon: ListMusic },
+  { to: "/library", label: "Library", icon: Library },
+  { to: "/settings", label: "Settings", icon: Settings },
 ];
 
 export function AppSidebar() {
@@ -33,16 +33,8 @@ export function AppSidebar() {
             active
               ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
               : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground",
-            item.disabled && "opacity-50 pointer-events-none",
           );
-          return item.disabled ? (
-            <div key={item.to} className={cls}>
-              <Icon className="size-4" /> {item.label}
-              <span className="ml-auto text-[10px] uppercase tracking-wide text-muted-foreground/70">
-                soon
-              </span>
-            </div>
-          ) : (
+          return (
             <Link key={item.to} to={item.to} className={cls}>
               <Icon className="size-4" /> {item.label}
             </Link>
