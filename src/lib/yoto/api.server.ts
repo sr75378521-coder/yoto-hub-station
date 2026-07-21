@@ -1,0 +1,33 @@
+/**
+ * Server-side Yoto REST helper. Attaches bearer token, auto-refreshes on 401.
+ */
+import { YOTO_API_BASE } from "./config";
+import { getValidAccessToken } from "./tokens.server";
+
+export class YotoNotConnectedError extends Error {
+  constructor() {
+    super("Yoto account not connected");
+    this.name = "YotoNotConnectedError";
+  }
+}
+
+export async function yotoFetch(
+  userId: string,
+  path: string,
+  init: RequestInit = {},
+): Promise<Response> {
+  const token = await getValidAccessToken(userId);
+  if (!token) throw new YotoNotConnectedError();
+  const headers = new Headers(init.headers);
+  headers.set("Authorization", `Bearer ${token}`);
+  if (!headers.has("Accept")) headers.set("Accept", "application/json");
+  const url = path.startsWith("http") ? path : `${YOTO_API_BASE}${path}`;
+  return fetch(url, { ...init, headers });
+}
+
+export async function yotoGetJson<T = unknown>(userId: string, path: string): Promise<T> {
+  const res = await yotoFetch(userId, path);
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Yoto API ${res.status} ${path}: ${text.slice(0, 300)}`);
+  return text ? (JSON.parse(text) as T) : (undefined as T);
+}
