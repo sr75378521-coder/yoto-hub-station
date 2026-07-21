@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Vercel is the deployment target — use its preset so the serverless
+    // function output matches what Vercel expects to run.
+    preset: "vercel",
+  },
 });
