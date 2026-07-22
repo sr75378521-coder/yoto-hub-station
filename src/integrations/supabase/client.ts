@@ -32,16 +32,17 @@ function createSupabaseClient() {
   // Fall back to window properties for client-side (SSR-injected runtime variables)
   // Fall back to process.env for SSR (server-side rendering)
   // Also try SUPABASE_ANON_KEY which is the standard Vercel Supabase integration variable name
+  const proc = (globalThis as any).process;
   const SUPABASE_URL =
     import.meta.env.VITE_SUPABASE_URL ||
     (typeof window !== 'undefined' ? (window as any).__SUPABASE_URL__ : undefined) ||
-    (typeof process !== 'undefined' ? process.env.SUPABASE_URL : undefined);
+    proc?.env?.SUPABASE_URL;
 
   const SUPABASE_PUBLISHABLE_KEY =
     import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
     (typeof window !== 'undefined' ? (window as any).__SUPABASE_PUBLISHABLE_KEY__ : undefined) ||
-    (typeof process !== 'undefined' ? process.env.SUPABASE_PUBLISHABLE_KEY : undefined) ||
-    (typeof process !== 'undefined' ? process.env.SUPABASE_ANON_KEY : undefined);
+    proc?.env?.SUPABASE_PUBLISHABLE_KEY ||
+    proc?.env?.SUPABASE_ANON_KEY;
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [

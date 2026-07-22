@@ -74,6 +74,9 @@ export function renderErrorPage(error?: unknown): string {
       .card { max-width: 28rem; width: 100%; text-align: center; padding: 2rem; }
       h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
       p { color: #4b5563; margin: 0 0 1.5rem; }
+      .details { text-align: left; margin: 1rem 0; border: 1px solid #e5e7eb; border-radius: 0.375rem; background: #f9fafb; }
+      summary { cursor: pointer; padding: 0.5rem; font-size: 0.75rem; color: #6b7280; font-weight: 500; outline: none; }
+      .details-content { padding: 0.5rem; font-family: monospace; font-size: 0.7rem; color: #dc2626; border-top: 1px solid #e5e7eb; overflow: auto; max-height: 10rem; white-space: pre-wrap; }
       .actions { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
       a, button { padding: 0.5rem 1rem; border-radius: 0.375rem; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
       .primary { background: #111; color: #fff; }
@@ -84,6 +87,17 @@ export function renderErrorPage(error?: unknown): string {
     <div class="card">
       <h1>This page didn't load</h1>
       <p>Something went wrong on our end. You can try refreshing or head back home.</p>
+
+      ${error ? `
+      <details class="details">
+        <summary>View error details</summary>
+        <div class="details-content">
+          <strong>Error:</strong> ${error instanceof Error ? error.message : String(error)}
+          ${error instanceof Error && error.stack ? `<br/><br/><strong>Stack:</strong><br/>${error.stack}` : ''}
+        </div>
+      </details>
+      ` : ''}
+
       <div class="actions">
         <button class="primary" onclick="location.reload()">Try again</button>
         <a class="secondary" href="/">Go home</a>

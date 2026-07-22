@@ -109,6 +109,24 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
+
+        {/* Expandable Error Details for debugging */}
+        <div className="mt-4 text-left max-w-sm mx-auto">
+          <details className="group rounded-md border border-border bg-muted/30 p-2">
+            <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground outline-none select-none">
+              View error details
+            </summary>
+            <div className="mt-2 max-h-40 overflow-auto rounded bg-black/40 p-2 text-[11px] font-mono text-destructive leading-relaxed whitespace-pre-wrap">
+              <strong>Error:</strong> {error?.message || String(error)}
+              {error?.stack && (
+                <div className="mt-1 border-t border-border/20 pt-1 text-[10px] text-muted-foreground">
+                  {error.stack}
+                </div>
+              )}
+            </div>
+          </details>
+        </div>
+
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -169,10 +187,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   // Extract public Supabase variables on the server-side to pass them safely to the client.
-  const supabaseUrl = typeof process !== "undefined" ? process.env.SUPABASE_URL : undefined;
-  const supabasePublishableKey = typeof process !== "undefined"
-    ? (process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY)
-    : undefined;
+  // Use globalThis.process to completely bypass Vite's static process.env replacement at build time.
+  const proc = (globalThis as any).process;
+  const supabaseUrl = proc?.env?.SUPABASE_URL;
+  const supabasePublishableKey = proc?.env?.SUPABASE_PUBLISHABLE_KEY || proc?.env?.SUPABASE_ANON_KEY;
 
   return (
     <html lang="en" className="dark">
