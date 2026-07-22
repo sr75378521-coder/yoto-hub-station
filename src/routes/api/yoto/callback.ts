@@ -14,8 +14,21 @@ export const Route = createFileRoute("/api/yoto/callback")({
         const code = url.searchParams.get("code");
         const state = url.searchParams.get("state");
         const error = url.searchParams.get("error");
-        if (error) throw redirect({ href: `/dashboard?yoto_error=${encodeURIComponent(error)}` });
-        if (!code || !state) return new Response("Missing code/state", { status: 400 });
+        const errorDescription = url.searchParams.get("error_description") ?? "No description";
+
+        if (error) {
+          console.error("[yoto/callback] Authorization server returned error:", {
+            error,
+            error_description: errorDescription,
+          });
+          const detail = `${error}: ${errorDescription}`;
+          throw redirect({ href: `/dashboard?yoto_error=${encodeURIComponent(detail)}` });
+        }
+
+        if (!code || !state) {
+          console.error("[yoto/callback] Missing code or state param");
+          return new Response("Missing code/state", { status: 400 });
+        }
 
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const { data: row, error: sErr } = await supabaseAdmin
@@ -23,23 +36,36 @@ export const Route = createFileRoute("/api/yoto/callback")({
           .select("user_id, code_verifier, redirect_to, expires_at")
           .eq("state", state)
           .maybeSingle();
-        if (sErr || !row) return new Response("Invalid or expired state", { status: 400 });
+
+        if (sErr || !row) {
+          console.error("[yoto/callback] Invalid or expired state:", sErr?.message);
+          return new Response("Invalid or expired state", { status: 400 });
+        }
         if (new Date(row.expires_at).getTime() < Date.now()) {
+          console.error("[yoto/callback] State has expired");
           return new Response("Expired state", { status: 400 });
         }
 
-        // One-time use
+        // One-time use — delete before exchange so a replay fails
         await supabaseAdmin.from("yoto_oauth_states").delete().eq("state", state);
+
+        const redirectUri = `${url.origin}${YOTO_CALLBACK_PATH}`;
+        console.log("[yoto/callback] Exchanging code for tokens", {
+          user_id: row.user_id,
+          redirect_uri: redirectUri,
+        });
 
         try {
           const tokens = await exchangeCodeForTokens({
             code,
             codeVerifier: row.code_verifier,
-            redirectUri: `${url.origin}${YOTO_CALLBACK_PATH}`,
+            redirectUri,
           });
           await upsertConnection(row.user_id, tokens);
+          console.log("[yoto/callback] Tokens stored successfully for user", row.user_id);
         } catch (e) {
           const msg = e instanceof Error ? e.message : "Unknown error";
+          console.error("[yoto/callback] Token exchange failed:", msg);
           throw redirect({ href: `/dashboard?yoto_error=${encodeURIComponent(msg)}` });
         }
 
