@@ -43,6 +43,63 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
+  const isSupabaseConfigError =
+    error?.message?.includes("Supabase environment variable") ||
+    error?.message?.includes("Supabase client is not configured") ||
+    error?.message?.includes("Missing Supabase environment variable");
+
+  if (isSupabaseConfigError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <div className="max-w-md rounded-2xl border border-border bg-card p-6 shadow-xl text-center">
+          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="size-6">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </div>
+          <h1 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
+            Connect Supabase to proceed
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            This application requires a Supabase connection to store players, playlists, and cards.
+          </p>
+
+          <div className="mt-5 text-left rounded-lg bg-muted/60 p-4 border border-border/40 text-xs text-muted-foreground space-y-3">
+            <p className="font-semibold text-foreground">How to fix this on Vercel:</p>
+            <ol className="list-decimal list-inside space-y-1.5 leading-relaxed">
+              <li>Go to your project in the <strong className="text-foreground">Vercel Dashboard</strong>.</li>
+              <li>Navigate to <strong className="text-foreground">Settings &gt; Environment Variables</strong>.</li>
+              <li>Add the following environment variables:
+                <ul className="list-disc list-inside pl-4 mt-1 space-y-1 text-[11px] font-mono">
+                  <li><strong className="text-foreground">SUPABASE_URL</strong>: your-supabase-project-url</li>
+                  <li><strong className="text-foreground">SUPABASE_ANON_KEY</strong>: your-anon-key</li>
+                </ul>
+              </li>
+              <li>Go to the <strong className="text-foreground">Deployments</strong> tab and redeploy the latest commit to apply the changes.</li>
+            </ol>
+            <p className="pt-2 text-[11px] leading-relaxed border-t border-border/20">
+              💡 <strong>Pro tip:</strong> If using Lovable, click "Connect Supabase" in the Lovable editor to automatically configure these variables for you.
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => {
+                router.invalidate();
+                reset();
+              }}
+              className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Try again after setting variables
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -111,10 +168,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // Extract public Supabase variables on the server-side to pass them safely to the client.
+  const supabaseUrl = typeof process !== "undefined" ? process.env.SUPABASE_URL : undefined;
+  const supabasePublishableKey = typeof process !== "undefined"
+    ? (process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY)
+    : undefined;
+
   return (
     <html lang="en" className="dark">
       <head>
         <HeadContent />
+        {supabaseUrl && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__SUPABASE_URL__ = ${JSON.stringify(supabaseUrl)};`,
+            }}
+          />
+        )}
+        {supabasePublishableKey && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__SUPABASE_PUBLISHABLE_KEY__ = ${JSON.stringify(supabasePublishableKey)};`,
+            }}
+          />
+        )}
       </head>
       <body>
         {children}

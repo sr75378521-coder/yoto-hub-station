@@ -1,6 +1,6 @@
 import { __rest } from "tslib";
 //#region node_modules/@supabase/auth-js/dist/module/lib/version.js
-var version = "2.110.8";
+var version = "2.110.7";
 //#endregion
 //#region node_modules/@supabase/auth-js/dist/module/lib/constants.js
 /** Current session will be checked for refresh at this interval. */
@@ -864,6 +864,7 @@ async function _handleRequest(fetcher, method, url, options, parameters, body) {
 	try {
 		result = await fetcher(url, Object.assign({}, requestParams));
 	} catch (e) {
+		console.error(e);
 		throw new AuthRetryableFetchError(_getErrorMessage(e), 0);
 	}
 	if (!result.ok) await handleError(result);
@@ -6432,7 +6433,7 @@ var GoTrueClient = class GoTrueClient {
 			} catch (err) {
 				await ((_b = this.stateChangeEmitters.get(id)) === null || _b === void 0 ? void 0 : _b.callback("INITIAL_SESSION", null));
 				this._debug("INITIAL_SESSION", "callback id", id, "error", err);
-				if (isAuthSessionMissingError(err) || isAuthRetryableFetchError(err)) console.warn(err);
+				if (isAuthSessionMissingError(err)) console.warn(err);
 				else console.error(err);
 			}
 		});
@@ -6862,8 +6863,7 @@ var GoTrueClient = class GoTrueClient {
 			else await this._notifyAllSubscribers("SIGNED_IN", currentSession);
 		} catch (err) {
 			this._debug(debugName, "error", err);
-			if (isAuthRetryableFetchError(err)) console.warn(err);
-			else console.error(err);
+			console.error(err);
 			return;
 		} finally {
 			this._debug(debugName, "end");

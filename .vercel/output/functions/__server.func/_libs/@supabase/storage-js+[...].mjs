@@ -697,17 +697,6 @@ var isValidBucketName = (bucketName) => {
 	return /^[\w!.\*'() &$@=;:+,?-]+$/.test(bucketName);
 };
 /**
-* Percent-encodes each segment of a storage path so URL delimiters within a
-* key (e.g. `?`, `#`) can't be interpreted as a querystring/fragment start.
-*
-* Splits on `/` so real path separators stay literal — the storage server
-* routes on them and decodes each segment back to the original key.
-*
-* @param path - A bucket id or `bucketId/objectKey` path
-* @returns The path with each `/`-delimited segment percent-encoded
-*/
-var encodeStoragePath = (path) => path.split("/").map(encodeURIComponent).join("/");
-/**
 * Extracts error message from various error response formats
 * @param err - Error object from API
 * @returns Human-readable error message
@@ -1822,7 +1811,7 @@ var StorageFileApi = class extends BaseApiClient {
 	async purgeCache(path, options, parameters) {
 		var _this13 = this;
 		return _this13.handleOperation(async () => {
-			const _path = encodeStoragePath(_this13._getFinalPath(path));
+			const _path = _this13._getFinalPath(path);
 			const query = new URLSearchParams();
 			if (options === null || options === void 0 ? void 0 : options.transformations) query.set("transformations", "true");
 			const queryString = query.toString();
@@ -2008,7 +1997,7 @@ var StorageFileApi = class extends BaseApiClient {
 		return query;
 	}
 };
-var DEFAULT_HEADERS = { "X-Client-Info": `storage-js/2.110.8` };
+var DEFAULT_HEADERS = { "X-Client-Info": `storage-js/2.110.7` };
 var StorageBucketApi = class extends BaseApiClient {
 	constructor(url, headers = {}, fetch$1, opts) {
 		const baseUrl = new URL(url);
@@ -2339,7 +2328,7 @@ var StorageBucketApi = class extends BaseApiClient {
 			const query = new URLSearchParams();
 			if (options === null || options === void 0 ? void 0 : options.transformations) query.set("transformations", "true");
 			const queryString = query.toString();
-			return await remove(_this7.fetch, `${_this7.url}/cdn/${encodeStoragePath(id)}${queryString ? `?${queryString}` : ""}`, {}, { headers: _this7.headers }, parameters);
+			return await remove(_this7.fetch, `${_this7.url}/cdn/${id}${queryString ? `?${queryString}` : ""}`, {}, { headers: _this7.headers }, parameters);
 		});
 	}
 	listBucketOptionsToQueryString(options) {
