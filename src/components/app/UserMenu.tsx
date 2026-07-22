@@ -41,7 +41,10 @@ export function UserMenu() {
           {email ?? "Signed in"}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={signOut} className="gap-2 text-destructive focus:text-destructive">
+        <DropdownMenuItem
+          onClick={signOut}
+          className="gap-2 text-destructive focus:text-destructive"
+        >
           <LogOut className="size-4" /> Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>

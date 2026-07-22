@@ -1,7 +1,11 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createClient } from "@supabase/supabase-js";
 import { YOTO_AUTH_BASE, YOTO_AUDIENCE, YOTO_SCOPES, YOTO_CALLBACK_PATH } from "@/lib/yoto/config";
-import { generateCodeVerifier, codeChallengeFromVerifier, generateState } from "@/lib/yoto/pkce.server";
+import {
+  generateCodeVerifier,
+  codeChallengeFromVerifier,
+  generateState,
+} from "@/lib/yoto/pkce.server";
 
 /**
  * Start the Yoto OAuth flow.
@@ -18,11 +22,12 @@ export const Route = createFileRoute("/api/yoto/authorize")({
 
         // Identify the user with their Supabase access token
         const supabaseUrl = process.env.SUPABASE_URL;
-        const publishable =
-          process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
+        const publishable = process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_ANON_KEY;
         if (!supabaseUrl || !publishable) {
           console.error("[yoto/authorize] Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY");
-          return new Response("Server configuration error: missing Supabase env vars", { status: 500 });
+          return new Response("Server configuration error: missing Supabase env vars", {
+            status: 500,
+          });
         }
 
         const sb = createClient(supabaseUrl, publishable, {
@@ -61,13 +66,20 @@ export const Route = createFileRoute("/api/yoto/authorize")({
         }
 
         const redirectUri = `${url.origin}${YOTO_CALLBACK_PATH}`;
+
+        // Support custom scopes and audience via query parameters to resolve potential access_denied
+        const scopes = url.searchParams.get("scopes") || YOTO_SCOPES;
+        const reqAudience = url.searchParams.get("audience");
+        const audience =
+          reqAudience === "skip" ? null : reqAudience !== null ? reqAudience : YOTO_AUDIENCE;
+
         const authorize = new URL(`${YOTO_AUTH_BASE}/authorize`);
         authorize.searchParams.set("response_type", "code");
         authorize.searchParams.set("client_id", clientId);
         authorize.searchParams.set("redirect_uri", redirectUri);
-        authorize.searchParams.set("scope", YOTO_SCOPES);
-        if (YOTO_AUDIENCE) {
-          authorize.searchParams.set("audience", YOTO_AUDIENCE);
+        authorize.searchParams.set("scope", scopes);
+        if (audience) {
+          authorize.searchParams.set("audience", audience);
         }
         authorize.searchParams.set("state", state);
         authorize.searchParams.set("code_challenge", challenge);
@@ -77,8 +89,8 @@ export const Route = createFileRoute("/api/yoto/authorize")({
         console.log("[yoto/authorize] Redirecting to Yoto authorization endpoint", {
           client_id: clientId,
           redirect_uri: redirectUri,
-          scope: YOTO_SCOPES,
-          audience: YOTO_AUDIENCE ?? "(omitted)",
+          scope: scopes,
+          audience: audience ?? "(omitted)",
           response_type: "code",
           code_challenge_method: "S256",
           state_length: state.length,

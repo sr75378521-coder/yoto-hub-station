@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_authenticated")({
       if (error || !data.user) throw redirect({ to: "/auth" });
       return { user: data.user };
     } catch (e) {
-      if (e && typeof e === 'object' && 'status' in e) throw e;
+      if (e && typeof e === "object" && "status" in e) throw e;
       throw redirect({ to: "/auth" });
     }
   },

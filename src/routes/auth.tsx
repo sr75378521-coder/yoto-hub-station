@@ -28,9 +28,18 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard", replace: true });
-    });
+    try {
+      supabase.auth
+        .getSession()
+        .then(({ data }) => {
+          if (data.session) navigate({ to: "/dashboard", replace: true });
+        })
+        .catch((err) => {
+          console.error("[Supabase] Failed to get session on auth page:", err);
+        });
+    } catch (err) {
+      console.error("[Supabase] Failed to get session on auth page:", err);
+    }
   }, [navigate]);
 
   const submit = async (e: React.FormEvent) => {

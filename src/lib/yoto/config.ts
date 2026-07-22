@@ -19,12 +19,13 @@ export const YOTO_CONTENT_SERVER = "https://content.yotoplay.com";
 // If a scope is not permitted, Auth0 returns access_denied.
 // Default to the minimum scopes needed for authentication + device access.
 export const YOTO_SCOPES =
-  process.env.YOTO_SCOPES ?? "openid profile offline_access family:devices:view";
+  process.env.YOTO_SCOPES ??
+  "profile offline_access family:devices:view family:devices:control family:view family:library:view user:content:view";
 
 // Additional scopes for MYO playlist editing and content reading.
 // These are optional — if they cause access_denied, set YOTO_SCOPES env var
 // to reduce to just the essential scopes.
 export const YOTO_EXTENDED_SCOPES =
-  "myo:playlists:view myo:playlists:edit content:read";
+  "user:content:manage family:devices:manage family:library:manage";
 
 export const YOTO_CALLBACK_PATH = "/api/yoto/callback";

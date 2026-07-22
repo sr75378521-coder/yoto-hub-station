@@ -62,12 +62,7 @@ function FamilyPage() {
                     Manage your family group and member permissions.
                   </p>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => refetch()}
-                  disabled={isFetching}
-                >
+                <Button variant="outline" size="sm" onClick={() => refetch()} disabled={isFetching}>
                   <RefreshCw className={`size-4 ${isFetching ? "animate-spin" : ""}`} />
                   Refresh
                 </Button>
@@ -94,7 +89,8 @@ function FamilyPage() {
             <div className="border-t pt-8">
               <div className="mb-6">
                 <h2 className="text-2xl font-semibold tracking-tight">
-                  {data.familyPlaylists.length} family playlist{data.familyPlaylists.length === 1 ? "" : "s"}
+                  {data.familyPlaylists.length} family playlist
+                  {data.familyPlaylists.length === 1 ? "" : "s"}
                 </h2>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Playlists shared across your family accounts.
@@ -125,7 +121,8 @@ function FamilyPage() {
 }
 
 function FamilyMemberCard({ member }: { member: any }) {
-  const initials = `${member.firstName?.[0] ?? ""}${member.lastName?.[0] ?? ""}`.toUpperCase() || "U";
+  const initials =
+    `${member.firstName?.[0] ?? ""}${member.lastName?.[0] ?? ""}`.toUpperCase() || "U";
   const fullName = `${member.firstName ?? ""} ${member.lastName ?? ""}`.trim();
 
   return (

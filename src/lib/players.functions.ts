@@ -131,10 +131,7 @@ export const getFamilyData = createServerFn({ method: "GET" })
   .handler(async ({ context }): Promise<FamilyData> => {
     try {
       // Fetch family members
-      const familyResponse = await yotoGetJson<YotoFamilyResponse>(
-        context.userId,
-        "/family/users",
-      );
+      const familyResponse = await yotoGetJson<YotoFamilyResponse>(context.userId, "/family/users");
       const members: FamilyMember[] = (familyResponse.users ?? []).map((u) => ({
         userId: u.userId,
         firstName: u.firstName ?? "User",

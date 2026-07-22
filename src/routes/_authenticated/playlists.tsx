@@ -221,7 +221,9 @@ function CreatePlaylistDialog({ onCreated }: { onCreated: () => void }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create New Playlist</DialogTitle>
-          <DialogDescription>Create a new MYO playlist to customize your Yoto content.</DialogDescription>
+          <DialogDescription>
+            Create a new MYO playlist to customize your Yoto content.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <div>
