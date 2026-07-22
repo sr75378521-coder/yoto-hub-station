@@ -1,5 +1,5 @@
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/client-yQ5XBYpI.js
+//#region node_modules/.nitro/vite/services/ssr/assets/client-xXoXHqVY.js
 function isNewSupabaseApiKey(value) {
 	return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
 }
@@ -17,7 +17,7 @@ function createSupabaseFetch(supabaseKey) {
 }
 function createSupabaseClient() {
 	const SUPABASE_URL = "https://larumkyfzmzyuaqkcroz.supabase.co";
-	const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpd2F5cnR3bmxhZ3VpbnR3a3d1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2NDg1OTEsImV4cCI6MjEwMDIyNDU5MX0.aVjGMmz7iBbGVExYZ0bJfAdQ8HSX0-4SKFR8V58lBv0";
+	const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhcnVta3lmem16eXVhcWtjcm96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3MzU3MjEsImV4cCI6MjEwMDMxMTcyMX0.oo72nMktm8cmI77mwxBdVXa64tXIrEth796wgP4RzpM";
 	return createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 		global: { fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY) },
 		auth: {

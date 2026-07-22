@@ -1,11 +1,11 @@
 import { r as __toESM } from "../_runtime.mjs";
-import { t as supabase } from "./client-yQ5XBYpI.mjs";
+import { t as supabase } from "./client-xXoXHqVY.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { F as require_jsx_runtime } from "../_libs/@radix-ui/react-alert-dialog+[...].mjs";
 import { t as Button } from "./button-CCQEfgNs.mjs";
 import { _ as useNavigate, g as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { b as ListMusic, c as Sparkles, i as Users, p as Radio } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CM9DRvk8.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-4r1yxi32.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Landing() {

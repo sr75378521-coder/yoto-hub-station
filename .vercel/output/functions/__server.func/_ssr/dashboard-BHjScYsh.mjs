@@ -9,10 +9,10 @@ import { f as RefreshCw, n as Wifi, o as Unplug, p as Radio, r as WifiOff } from
 import { n as getDashboardData, o as useServerFn, t as disconnectYoto } from "./players.functions-BhWWIwRF.mjs";
 import { t as Skeleton } from "./skeleton-DLRLwmh_.mjs";
 import { a as useQueryClient, n as queryOptions, r as useSuspenseQuery, t as useMutation } from "../_libs/tanstack__react-query.mjs";
-import { t as AppShell } from "./AppShell-Cw-RdHZ4.mjs";
+import { t as AppShell } from "./AppShell-56WDQdlb.mjs";
 import { t as Badge } from "./badge-Bt-nVIZo.mjs";
-import { t as ConnectYotoCard } from "./ConnectYotoCard-DCmYcZca.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-CIAQNpoJ.js
+import { t as ConnectYotoCard } from "./ConnectYotoCard-CZQhhI0Y.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/dashboard-BHjScYsh.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function PlayerCard({ player }) {

@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-DViyQV14.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-uhH44ynU.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/__root.tsx",
@@ -10,7 +10,7 @@ var tsrStartManifest = () => ({ routes: {
 			"/api/yoto/callback"
 		],
 		preloads: [
-			"/assets/index-DV1rX7_a.js",
+			"/assets/index-B1e4bCoz.js",
 			"/assets/jsx-runtime-BKllkxft.js",
 			"/assets/useStore-CfeScQ2w.js",
 			"/assets/useRouter-DQzVw-2q.js",
@@ -19,14 +19,14 @@ var tsrStartManifest = () => ({ routes: {
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-DV1rX7_a.js"
+			src: "/assets/index-B1e4bCoz.js"
 		} }]
 	},
 	"/": {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/index.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/routes-BmuMAf7y.js",
+			"/assets/routes-B0orsZrQ.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/radio-DLCwneSj.js",
 			"/assets/users-CT9JHcLp.js"
@@ -41,34 +41,34 @@ var tsrStartManifest = () => ({ routes: {
 			"/_authenticated/playlists",
 			"/_authenticated/settings"
 		],
-		preloads: ["/assets/route-DMAVaiX1.js"]
+		preloads: ["/assets/route-DJ7sd7dm.js"]
 	},
 	"/auth": {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/auth.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/auth-CeRNCtHb.js",
+			"/assets/auth-xdr3YdZy.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/radio-DLCwneSj.js",
-			"/assets/card-DcO7XFY5.js",
+			"/assets/card-CK5b1VcW.js",
 			"/assets/input-nk8IW_VY.js",
-			"/assets/label-Vo6EGpjc.js"
+			"/assets/label-DV_kuKM5.js"
 		]
 	},
 	"/_authenticated/dashboard": {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/_authenticated/dashboard.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/dashboard-Chn2ZYEe.js",
-			"/assets/players.functions-HWIWjU5Y.js",
-			"/assets/AppShell-CgHZl7b3.js",
-			"/assets/useMutation-DFRm7zll.js",
+			"/assets/dashboard-CoiJuzrE.js",
+			"/assets/players.functions-IsBh_1Nh.js",
+			"/assets/AppShell-5T6HYe_W.js",
+			"/assets/useMutation-Bxg3BVMo.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/skeleton-C6ZX82A1.js",
 			"/assets/radio-DLCwneSj.js",
-			"/assets/card-DcO7XFY5.js",
+			"/assets/card-CK5b1VcW.js",
 			"/assets/badge-C8LUkjgg.js",
-			"/assets/ConnectYotoCard-DHaAhLCT.js",
+			"/assets/ConnectYotoCard-CiW2xPkq.js",
 			"/assets/dashboard-Let00Fgz.js"
 		]
 	},
@@ -76,31 +76,31 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/_authenticated/family.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/family-D9ruOQW6.js",
-			"/assets/players.functions-HWIWjU5Y.js",
-			"/assets/AppShell-CgHZl7b3.js",
+			"/assets/family-DNrtgnB1.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/skeleton-C6ZX82A1.js",
+			"/assets/family-HG890XhN.js",
+			"/assets/players.functions-IsBh_1Nh.js",
+			"/assets/AppShell-5T6HYe_W.js",
 			"/assets/radio-DLCwneSj.js",
 			"/assets/disc-3-GyzMLGuG.js",
 			"/assets/music-jEDnOVb9.js",
 			"/assets/shield-C0qDp1_b.js",
-			"/assets/card-DcO7XFY5.js",
+			"/assets/card-CK5b1VcW.js",
 			"/assets/badge-C8LUkjgg.js",
-			"/assets/ConnectYotoCard-DHaAhLCT.js",
-			"/assets/family-DNrtgnB1.js"
+			"/assets/ConnectYotoCard-CiW2xPkq.js"
 		]
 	},
 	"/_authenticated/library": {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/_authenticated/library.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/library-WbjRmbE7.js",
-			"/assets/AppShell-CgHZl7b3.js",
+			"/assets/library-DFmjTpGv.js",
+			"/assets/AppShell-5T6HYe_W.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/radio-DLCwneSj.js",
 			"/assets/disc-3-GyzMLGuG.js",
-			"/assets/card-DcO7XFY5.js",
+			"/assets/card-CK5b1VcW.js",
 			"/assets/badge-C8LUkjgg.js"
 		]
 	},
@@ -108,18 +108,18 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/_authenticated/playlists.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/playlists-D9YSLLym.js",
-			"/assets/players.functions-HWIWjU5Y.js",
-			"/assets/AppShell-CgHZl7b3.js",
+			"/assets/playlists-CJlZvhTO.js",
+			"/assets/players.functions-IsBh_1Nh.js",
+			"/assets/AppShell-5T6HYe_W.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/skeleton-C6ZX82A1.js",
 			"/assets/radio-DLCwneSj.js",
 			"/assets/disc-3-GyzMLGuG.js",
 			"/assets/music-jEDnOVb9.js",
-			"/assets/card-DcO7XFY5.js",
-			"/assets/ConnectYotoCard-DHaAhLCT.js",
+			"/assets/card-CK5b1VcW.js",
+			"/assets/ConnectYotoCard-CiW2xPkq.js",
 			"/assets/input-nk8IW_VY.js",
-			"/assets/dist-Bw9f7zvG.js",
+			"/assets/dist-NkbU5rcg.js",
 			"/assets/playlists-DEoeYUfZ.js"
 		]
 	},
@@ -127,17 +127,17 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "/tmp/cc-agent/69120687/project/src/routes/_authenticated/settings.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/settings-3rS3WBcd.js",
-			"/assets/players.functions-HWIWjU5Y.js",
-			"/assets/AppShell-CgHZl7b3.js",
-			"/assets/useMutation-DFRm7zll.js",
+			"/assets/settings-BI2pjE_p.js",
+			"/assets/players.functions-IsBh_1Nh.js",
+			"/assets/AppShell-5T6HYe_W.js",
+			"/assets/useMutation-Bxg3BVMo.js",
 			"/assets/button-D8k_wut3.js",
 			"/assets/skeleton-C6ZX82A1.js",
 			"/assets/radio-DLCwneSj.js",
 			"/assets/shield-C0qDp1_b.js",
-			"/assets/card-DcO7XFY5.js",
-			"/assets/dist-Bw9f7zvG.js",
-			"/assets/label-Vo6EGpjc.js",
+			"/assets/card-CK5b1VcW.js",
+			"/assets/dist-NkbU5rcg.js",
+			"/assets/label-DV_kuKM5.js",
 			"/assets/settings-Ck6dmlgb.js"
 		]
 	}

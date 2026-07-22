@@ -1,5 +1,5 @@
 import { r as __toESM } from "../_runtime.mjs";
-import { t as supabase } from "./client-yQ5XBYpI.mjs";
+import { t as supabase } from "./client-xXoXHqVY.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { F as require_jsx_runtime } from "../_libs/@radix-ui/react-alert-dialog+[...].mjs";
 import { t as Button } from "./button-CCQEfgNs.mjs";
@@ -9,7 +9,7 @@ import { t as Label } from "./label-B1jF9p8Y.mjs";
 import { _ as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { p as Radio } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/auth-D9NjlkTq.js
+//#region node_modules/.nitro/vite/services/ssr/assets/auth-Ch20MfL9.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function AuthPage() {

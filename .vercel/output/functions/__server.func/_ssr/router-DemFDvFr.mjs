@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-import { t as supabase } from "./client-yQ5XBYpI.mjs";
+import { t as supabase } from "./client-xXoXHqVY.mjs";
 import { u as require_react } from "../_libs/@floating-ui/react-dom+[...].mjs";
 import { F as require_jsx_runtime } from "../_libs/@radix-ui/react-alert-dialog+[...].mjs";
 import { M as redirect, c as HeadContent, d as createRouter, f as Outlet, g as Link, h as createRootRouteWithContext, m as createFileRoute, p as lazyRouteComponent, s as Scripts, y as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
@@ -10,7 +10,7 @@ import { i as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { a as YOTO_SCOPES, i as YOTO_CALLBACK_PATH, l as upsertConnection, n as YOTO_AUDIENCE, r as YOTO_AUTH_BASE, s as exchangeCodeForTokens } from "./tokens.server-cGAib_13.mjs";
 import { n as objectType, r as stringType, t as enumType } from "../_libs/zod.mjs";
 import { createHash, randomBytes } from "node:crypto";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CcGnshNF.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DemFDvFr.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Toaster$1 = ({ ...props }) => {
@@ -207,7 +207,7 @@ function RootComponent() {
 		})]
 	});
 }
-var $$splitComponentImporter$7 = () => import("./routes-CM9DRvk8.mjs");
+var $$splitComponentImporter$7 = () => import("./routes-4r1yxi32.mjs");
 var Route$9 = createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "Yoto Control Center — Manage every Yoto player" },
@@ -249,7 +249,7 @@ var Route$8 = createFileRoute("/_authenticated")({
 	},
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$5 = () => import("./auth-D9NjlkTq.mjs");
+var $$splitComponentImporter$5 = () => import("./auth-Ch20MfL9.mjs");
 var Route$7 = createFileRoute("/auth")({
 	head: () => ({ meta: [
 		{ title: "Sign in · Yoto Control Center" },
@@ -269,7 +269,7 @@ var Route$7 = createFileRoute("/auth")({
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
 var $$splitErrorComponentImporter$3 = () => import("./dashboard-CfdBRdD2.mjs");
-var $$splitComponentImporter$4 = () => import("./dashboard-CIAQNpoJ.mjs");
+var $$splitComponentImporter$4 = () => import("./dashboard-BHjScYsh.mjs");
 var searchSchema = objectType({
 	yoto: enumType(["connected"]).optional(),
 	yoto_error: stringType().optional()
@@ -295,7 +295,7 @@ var Route$6 = createFileRoute("/_authenticated/dashboard")({
 	errorComponent: lazyRouteComponent($$splitErrorComponentImporter$3, "errorComponent")
 });
 var $$splitErrorComponentImporter$2 = () => import("./family-CpAul8We.mjs");
-var $$splitComponentImporter$3 = () => import("./family-BCxZZ9c7.mjs");
+var $$splitComponentImporter$3 = () => import("./family-Eim6HUYe.mjs");
 var Route$5 = createFileRoute("/_authenticated/family")({
 	head: () => ({ meta: [{ title: "Family · Yoto Control Center" }, {
 		name: "description",
@@ -304,7 +304,7 @@ var Route$5 = createFileRoute("/_authenticated/family")({
 	component: lazyRouteComponent($$splitComponentImporter$3, "component"),
 	errorComponent: lazyRouteComponent($$splitErrorComponentImporter$2, "errorComponent")
 });
-var $$splitComponentImporter$2 = () => import("./library-nkJHLM5j.mjs");
+var $$splitComponentImporter$2 = () => import("./library-DVjTS9tX.mjs");
 var Route$4 = createFileRoute("/_authenticated/library")({
 	head: () => ({ meta: [{ title: "Library · Yoto Control Center" }, {
 		name: "description",
@@ -313,7 +313,7 @@ var Route$4 = createFileRoute("/_authenticated/library")({
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
 var $$splitErrorComponentImporter$1 = () => import("./playlists-DCAV5RKo.mjs");
-var $$splitComponentImporter$1 = () => import("./playlists-C_V-Ki-9.mjs");
+var $$splitComponentImporter$1 = () => import("./playlists-CZso_nIQ.mjs");
 var Route$3 = createFileRoute("/_authenticated/playlists")({
 	head: () => ({ meta: [{ title: "Playlists · Yoto Control Center" }, {
 		name: "description",
@@ -323,7 +323,7 @@ var Route$3 = createFileRoute("/_authenticated/playlists")({
 	errorComponent: lazyRouteComponent($$splitErrorComponentImporter$1, "errorComponent")
 });
 var $$splitErrorComponentImporter = () => import("./settings-D6bbbHUY.mjs");
-var $$splitComponentImporter = () => import("./settings-CKydbxAC.mjs");
+var $$splitComponentImporter = () => import("./settings-CqSinzj0.mjs");
 var Route$2 = createFileRoute("/_authenticated/settings")({
 	head: () => ({ meta: [{ title: "Settings · Yoto Control Center" }, {
 		name: "description",

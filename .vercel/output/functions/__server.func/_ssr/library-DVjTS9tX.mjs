@@ -4,10 +4,10 @@ import { F as require_jsx_runtime } from "../_libs/@radix-ui/react-alert-dialog+
 import { r as cn, t as Button } from "./button-CCQEfgNs.mjs";
 import { a as CardTitle, i as CardHeader, n as CardContent, r as CardDescription, t as Card } from "./card-C2pytTEu.mjs";
 import { C as Heart, E as Disc3, O as Clock, T as Download, w as FileMusic } from "../_libs/lucide-react.mjs";
-import { t as AppShell } from "./AppShell-Cw-RdHZ4.mjs";
+import { t as AppShell } from "./AppShell-56WDQdlb.mjs";
 import { t as Badge } from "./badge-Bt-nVIZo.mjs";
 import { i as Trigger, n as List, r as Root2, t as Content } from "../_libs/radix-ui__react-tabs.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/library-nkJHLM5j.js
+//#region node_modules/.nitro/vite/services/ssr/assets/library-DVjTS9tX.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Tabs = Root2;
