@@ -4,7 +4,7 @@ import { t as RealtimeClient } from "./supabase__realtime-js.mjs";
 import { t as StorageClient } from "./@supabase/storage-js+[...].mjs";
 import { t as AuthClient } from "./supabase__auth-js.mjs";
 //#region node_modules/@supabase/supabase-js/dist/index.mjs
-var version = "2.110.8";
+var version = "2.110.7";
 var JS_ENV = "";
 var JS_RUNTIME_VERSION;
 if (typeof Deno !== "undefined") {
@@ -862,7 +862,7 @@ var createClient = (supabaseUrl, supabaseKey, options) => {
 	return new SupabaseClient(supabaseUrl, supabaseKey, options);
 };
 function shouldShowDeprecationWarning() {
-	if (typeof window !== "undefined" || globalThis["Deno"] !== void 0) return false;
+	if (typeof window !== "undefined") return false;
 	const _process = globalThis["process"];
 	if (!_process) return false;
 	const processVersion = _process["version"];

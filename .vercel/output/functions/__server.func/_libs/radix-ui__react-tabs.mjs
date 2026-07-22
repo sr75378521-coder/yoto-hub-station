@@ -1,22 +1,17 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { u as require_react } from "./@floating-ui/react-dom+[...].mjs";
-import { A as Primitive, D as useControllableState, F as require_jsx_runtime, S as useId, b as Presence, k as createContextScope } from "./@radix-ui/react-alert-dialog+[...].mjs";
+import { D as Primitive, P as require_jsx_runtime, S as useId, b as Presence, j as createContextScope, k as useControllableState } from "./@radix-ui/react-alert-dialog+[...].mjs";
 import { t as composeEventHandlers } from "./radix-ui__primitive.mjs";
 import { t as useDirection } from "./radix-ui__react-direction.mjs";
 import { h as createRovingFocusGroupScope, m as Root, p as Item } from "./@radix-ui/react-dropdown-menu+[...].mjs";
 //#region node_modules/@radix-ui/react-tabs/dist/index.mjs
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 var import_jsx_runtime = require_jsx_runtime();
-var __defProp = Object.defineProperty;
-var __name = (target, value) => __defProp(target, "name", {
-	value,
-	configurable: true
-});
 var TABS_NAME = "Tabs";
 var [createTabsContext, createTabsScope] = createContextScope(TABS_NAME, [createRovingFocusGroupScope]);
 var useRovingFocusGroupScope = createRovingFocusGroupScope();
 var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
-var Tabs = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(function Tabs2(props, forwardedRef) {
+var Tabs = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, value: valueProp, onValueChange, defaultValue, orientation = "horizontal", dir, activationMode = "automatic", ...tabsProps } = props;
 	const direction = useDirection(dir);
 	const [value, setValue] = useControllableState({
@@ -40,9 +35,10 @@ var Tabs = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(functi
 			ref: forwardedRef
 		})
 	});
-}, "Tabs"));
+});
+Tabs.displayName = TABS_NAME;
 var TAB_LIST_NAME = "TabsList";
-var TabsList = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(function TabsList2(props, forwardedRef) {
+var TabsList = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, loop = true, ...listProps } = props;
 	const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
 	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
@@ -59,9 +55,10 @@ var TabsList = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(fu
 			ref: forwardedRef
 		})
 	});
-}, "TabsList"));
+});
+TabsList.displayName = TAB_LIST_NAME;
 var TRIGGER_NAME = "TabsTrigger";
-var TabsTrigger = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(function TabsTrigger2(props, forwardedRef) {
+var TabsTrigger = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
 	const context = useTabsContext(TRIGGER_NAME, __scopeTabs);
 	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
@@ -89,7 +86,6 @@ var TabsTrigger = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name
 				else event.preventDefault();
 			}),
 			onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
-				if (disabled || event.target !== event.currentTarget) return;
 				if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
 			}),
 			onFocus: composeEventHandlers(props.onFocus, () => {
@@ -98,9 +94,10 @@ var TabsTrigger = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name
 			})
 		})
 	});
-}, "TabsTrigger"));
+});
+TabsTrigger.displayName = TRIGGER_NAME;
 var CONTENT_NAME = "TabsContent";
-var TabsContent = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name(function TabsContent2(props, forwardedRef) {
+var TabsContent = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
 	const context = useTabsContext(CONTENT_NAME, __scopeTabs);
 	const triggerId = makeTriggerId(context.baseId, value);
@@ -130,15 +127,14 @@ var TabsContent = /* @__PURE__ */ import_react.forwardRef(/* @__PURE__ */ __name
 			children: present && children
 		})
 	});
-}, "TabsContent"));
+});
+TabsContent.displayName = CONTENT_NAME;
 function makeTriggerId(baseId, value) {
 	return `${baseId}-trigger-${value}`;
 }
-__name(makeTriggerId, "makeTriggerId");
 function makeContentId(baseId, value) {
 	return `${baseId}-content-${value}`;
 }
-__name(makeContentId, "makeContentId");
 var Root2 = Tabs;
 var List = TabsList;
 var Trigger = TabsTrigger;
